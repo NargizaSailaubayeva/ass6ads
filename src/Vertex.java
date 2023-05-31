@@ -14,5 +14,7 @@ public class Vertex <V> {
     public void addAdjacentVertex(Vertex<V> destination, double weight) {
         adjVertex.put(destination, weight);
     }
-
+    public Map<Vertex<V>, Double> getAdjacentVertices() {
+        return adjVertex;
+    }
 }
