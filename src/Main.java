@@ -1,6 +1,7 @@
 import java.util.List;
 public class Main {
     public static void main(String[] args) {
+        // Create vertices
         Vertex<String> vertex1 = new Vertex<>("K");
         Vertex<String> vertex2 = new Vertex<>("L");
         Vertex<String> vertex3 = new Vertex<>("M");

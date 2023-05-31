@@ -2,6 +2,10 @@ import java.util.*;
 
 public class DijkstraSearch<V> implements Search<V> {
     private WeightedGraph<V> graph;
+    /**
+     * Constructs a DijkstraSearch object with the specified weighted graph.
+     * @param graph the weighted graph to perform Dijkstra's algorithm on.
+     */
     public DijkstraSearch(WeightedGraph<V> graph) {
         this.graph = graph;
     }
@@ -27,6 +31,11 @@ public class DijkstraSearch<V> implements Search<V> {
             return Double.compare(distance, other.distance);
         }
     }
+    /**
+     * Performs Dijkstra's algorithm starting from the specified startVertex and returns the map of distances to each vertex.
+     * @param startVertex the vertex to start Dijkstra's algorithm from.
+     * @return the map of distances to each vertex from the startVertex.
+     */
     public Map<Vertex<V>, Double> dijkstraSearch(Vertex<V> startVertex) {
         Map<Vertex<V>, Double> distances = new HashMap<>();
         PriorityQueue<DijkstraNode<V>> priorityQueue = new PriorityQueue<>();
@@ -68,6 +77,10 @@ public class DijkstraSearch<V> implements Search<V> {
 
         return distances;
     }
+    /**
+     * Prints the results of Dijkstra's algorithm starting from the specified startVertex.
+     * @param startVertex the vertex to start Dijkstra's algorithm from.
+     */
     public void printDijkstra(Vertex<V> startVertex) {
         Map<Vertex<V>, Double> distances = dijkstraSearch(startVertex);
 
@@ -78,6 +91,12 @@ public class DijkstraSearch<V> implements Search<V> {
             System.out.println("Vertex: " + vertex.getData() + ", Distance: " + distanceString);
         }
     }
+
+    /**
+     * @param parentMap A Map that maps each vertex to its parent vertex in the shortest path.
+     * @param destination  The destination vertex for which the path needs to be built.
+     * @return  it returns the path list containing the vertices in the path from the source to the destination.
+     */
     private List<V> buildPath(Map<Vertex<V>, Vertex<V>> parentMap, Vertex<V> destination) {
         List<V> path = new ArrayList<>();
         Vertex<V> currentVertex = destination;
@@ -89,6 +108,13 @@ public class DijkstraSearch<V> implements Search<V> {
 
         return path;
     }
+
+    /**
+     *
+     * @param source the source vertex.
+     * @param destination the destination vertex.
+     * @return
+     */
     @Override
     public List<V> findPath(Vertex<V> source, Vertex<V> destination) {
         Map<Vertex<V>, Double> distances = new HashMap<>();
