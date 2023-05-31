@@ -17,4 +17,13 @@ public class Vertex <V> {
     public Map<Vertex<V>, Double> getAdjacentVertices() {
         return adjVertex;
     }
+    private void validateVertex(Vertex<V> vertex) {
+        if (!adjVertex.containsKey(vertex)) {
+            throw new IllegalArgumentException("Vertex " + vertex + " is out of the range");
+        }
+    }
+    public void removeAdjacentVertex(Vertex<V> vertex) {
+        validateVertex(vertex);
+        adjVertex.remove(vertex);
+    }
 }
