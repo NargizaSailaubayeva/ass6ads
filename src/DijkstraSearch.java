@@ -68,6 +68,16 @@ public class DijkstraSearch<V> implements Search<V> {
 
         return distances;
     }
+    public void printDijkstra(Vertex<V> startVertex) {
+        Map<Vertex<V>, Double> distances = dijkstraSearch(startVertex);
+
+        System.out.println("Dijkstra's Algorithm Results:");
+        for (Vertex<V> vertex : distances.keySet()) {
+            Double distance = distances.get(vertex);
+            String distanceString = (distance == Double.POSITIVE_INFINITY) ? "Infinity" : String.valueOf(distance);
+            System.out.println("Vertex: " + vertex.getData() + ", Distance: " + distanceString);
+        }
+    }
     private List<V> buildPath(Map<Vertex<V>, Vertex<V>> parentMap, Vertex<V> destination) {
         List<V> path = new ArrayList<>();
         Vertex<V> currentVertex = destination;
