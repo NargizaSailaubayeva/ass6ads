@@ -33,4 +33,7 @@ public class Vertex <V> {
     public boolean containsAdjacentVertex(Vertex<V> vertex) {
         return adjVertex.containsKey(vertex);
     }
+    public void clearAdjacentVertices() {
+        adjVertex.clear();
+    }
 }
