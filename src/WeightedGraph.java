@@ -28,4 +28,8 @@ public class WeightedGraph<V> {
             return weight;
         }
     }
+    public void addVertex(Vertex<V> vertex) {
+        list.put(vertex, new ArrayList<>());
+    }
+
 }
