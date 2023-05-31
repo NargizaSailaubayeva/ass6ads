@@ -27,6 +27,47 @@ public class DijkstraSearch<V> implements Search<V> {
             return Double.compare(distance, other.distance);
         }
     }
+    public Map<Vertex<V>, Double> dijkstraSearch(Vertex<V> startVertex) {
+        Map<Vertex<V>, Double> distances = new HashMap<>();
+        PriorityQueue<DijkstraNode<V>> priorityQueue = new PriorityQueue<>();
+
+        // Initialize distances to infinity for all vertices except the start vertex
+        for (Vertex<V> vertex : graph.getVertices()) {
+            if (vertex.equals(startVertex)) {
+                distances.put(vertex, 0.0);
+            } else {
+                distances.put(vertex, Double.POSITIVE_INFINITY);
+            }
+        }
+
+        priorityQueue.offer(new DijkstraNode<>(startVertex, 0.0));
+
+        while (!priorityQueue.isEmpty()) {
+            DijkstraNode<V> currentNode = priorityQueue.poll();
+            Vertex<V> currentVertex = currentNode.getVertex();
+            double currentDistance = currentNode.getDistance();
+
+            // Skip if the current distance is greater than the known distance
+            if (currentDistance > distances.get(currentVertex)) {
+                continue;
+            }
+
+            List<WeightedGraph<V>.Edge<V>> edges = graph.getEdge(currentVertex);
+            for (WeightedGraph<V>.Edge<V> edge : edges) {
+                Vertex<V> neighborVertex = edge.getDestination();
+                double edgeWeight = edge.getWeight();
+                double distanceThroughCurrent = currentDistance + edgeWeight;
+
+                // Update the distance if it is shorter than the current known distance
+                if (distanceThroughCurrent < distances.get(neighborVertex)) {
+                    distances.put(neighborVertex, distanceThroughCurrent);
+                    priorityQueue.offer(new DijkstraNode<>(neighborVertex, distanceThroughCurrent));
+                }
+            }
+        }
+
+        return distances;
+    }
     @Override
     public List<V> findPath(Vertex<V> source, Vertex<V> destination) {
         return null;
