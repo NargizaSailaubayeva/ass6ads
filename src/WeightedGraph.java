@@ -53,4 +53,9 @@ public class WeightedGraph<V> {
         }
         return allEdges;
     }
+    public List<Edge<V>> getEdge(Vertex<V> vertex) {
+        validate(vertex);
+        return list.get(vertex);
+    }
+
 }
