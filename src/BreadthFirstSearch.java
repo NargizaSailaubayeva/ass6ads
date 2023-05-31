@@ -52,7 +52,36 @@ public class BreadthFirstSearch<V> implements Search<V> {
     }
     @Override
     public List<V> findPath(Vertex<V> source, Vertex<V> destination) {
-        return null;
-    }
+        List<Vertex<V>> path = new ArrayList<>();
+        Queue<Vertex<V>> queue = new LinkedList<>();
+        Map<Vertex<V>, Vertex<V>> parentMap = new HashMap<>();
 
+        queue.offer(source);
+        parentMap.put(source, null);
+
+        while (!queue.isEmpty()) {
+            Vertex<V> currentVertex = queue.poll();
+            if (currentVertex.equals(destination)) {
+                // Destination vertex found, reconstruct the path
+                path.add(destination);
+                Vertex<V> parent = parentMap.get(destination);
+                while (parent != null) {
+                    path.add(0, parent);
+                    parent = parentMap.get(parent);
+                }
+                break;
+            }
+
+            List<WeightedGraph<V>.Edge<V>> edges = graph.getEdge(currentVertex);
+            for (WeightedGraph<V>.Edge<V> edge : edges) {
+                Vertex<V> neighborVertex = edge.getDestination();
+                if (!parentMap.containsKey(neighborVertex)) {
+                    queue.offer(neighborVertex);
+                    parentMap.put(neighborVertex, currentVertex);
+                }
+            }
+        }
+
+        return (List<V>) path;
+    }
 }
