@@ -57,5 +57,23 @@ public class WeightedGraph<V> {
         validate(vertex);
         return list.get(vertex);
     }
+    public void graphInfo() {
+        // Print vertices
+        System.out.println("Vertices:");
+        for (Vertex<V> vertex : list.keySet()) {
+            System.out.println(vertex.getData());
+        }
+        System.out.println();
 
+        // Print edges with weights
+        System.out.println("Edges with Weights:");
+        for (List<Edge<V>> edges : list.values()) {
+            for (Edge<V> edge : edges) {
+                System.out.println("Source: " + edge.getSource().getData());
+                System.out.println("Destination: " + edge.getDestination().getData());
+                System.out.println("Weight: " + edge.getWeight());
+                System.out.println();
+            }
+        }
+    }
 }
