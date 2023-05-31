@@ -31,5 +31,16 @@ public class WeightedGraph<V> {
     public void addVertex(Vertex<V> vertex) {
         list.put(vertex, new ArrayList<>());
     }
-
+    public void validate(Vertex<V> vertex) {
+        if (!list.containsKey(vertex)) {
+            throw new IllegalArgumentException("Vertex " + vertex + " is out of the range");
+        }
+    }
+    public void addEdge(Vertex<V> source, Vertex<V> destination, double weight) {
+        validate(source);
+        validate(destination);
+        List<Edge<V>> edges = list.get(source);
+        edges.add(new Edge<V>(source, destination, weight));
+        list.put(source, edges);
+    }
 }
