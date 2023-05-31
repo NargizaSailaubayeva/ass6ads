@@ -11,4 +11,5 @@ public class Vertex <V> {
     public V getData() {
         return data;
     }
+
 }

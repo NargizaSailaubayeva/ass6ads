@@ -21,6 +21,8 @@ public class WeightedGraph<V> {
         public Vertex<V> getSource() {
             return source;
         }
-
+        public Vertex<V> getDestination() {
+            return destination;
+        }
     }
 }
