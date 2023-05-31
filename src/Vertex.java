@@ -30,4 +30,7 @@ public class Vertex <V> {
         validateVertex(vertex);
         return adjVertex.get(vertex);
     }
+    public boolean containsAdjacentVertex(Vertex<V> vertex) {
+        return adjVertex.containsKey(vertex);
+    }
 }
