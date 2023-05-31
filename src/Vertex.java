@@ -36,4 +36,7 @@ public class Vertex <V> {
     public void clearAdjacentVertices() {
         adjVertex.clear();
     }
+    public int getDegree() {
+        return adjVertex.size();
+    }
 }
