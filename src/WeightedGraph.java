@@ -43,4 +43,7 @@ public class WeightedGraph<V> {
         edges.add(new Edge<V>(source, destination, weight));
         list.put(source, edges);
     }
+    public List<Vertex<V>> getVertices() {
+        return new ArrayList<>(list.keySet());
+    }
 }
