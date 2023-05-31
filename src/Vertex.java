@@ -26,4 +26,8 @@ public class Vertex <V> {
         validateVertex(vertex);
         adjVertex.remove(vertex);
     }
+    public double getWeight(Vertex<V> vertex) {
+        validateVertex(vertex);
+        return adjVertex.get(vertex);
+    }
 }
