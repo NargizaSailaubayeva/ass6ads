@@ -13,5 +13,10 @@ public class WeightedGraph<V> {
         private Vertex<V> source;
         private Vertex<V> destination;
         private double weight;
+        public Edge(Vertex<V> source, Vertex<V> destination, double weight) {
+            this.source = source;
+            this.destination = destination;
+            this.weight = weight;
+        }
     }
 }
