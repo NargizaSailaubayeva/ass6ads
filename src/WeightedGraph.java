@@ -18,5 +18,9 @@ public class WeightedGraph<V> {
             this.destination = destination;
             this.weight = weight;
         }
+        public Vertex<V> getSource() {
+            return source;
+        }
+
     }
 }
