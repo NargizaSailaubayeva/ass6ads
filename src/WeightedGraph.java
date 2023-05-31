@@ -46,4 +46,11 @@ public class WeightedGraph<V> {
     public List<Vertex<V>> getVertices() {
         return new ArrayList<>(list.keySet());
     }
+    public List<Edge<V>> getEdges() {
+        List<Edge<V>> allEdges = new ArrayList<>();
+        for (List<Edge<V>> edge : list.values()) {
+            allEdges.addAll(edge);
+        }
+        return allEdges;
+    }
 }
